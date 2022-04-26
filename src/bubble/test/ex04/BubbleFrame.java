@@ -1,4 +1,4 @@
-package bubble.test.ex03;
+package bubble.test.ex04;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -25,19 +25,50 @@ public class BubbleFrame extends JFrame {
 				//System.out.println(e.getKeyCode());
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_LEFT:
-                    player.left();
+				if(!player.isLeft()){
+					 player.left();
+				}
+                   
 					break;
 				case KeyEvent.VK_RIGHT:
-					   player.right();
+					if(!player.isRight()) {
+						  player.right();
+					}
+					 
 					break;
 				case KeyEvent.VK_UP:
+					if(!player.isUp() && !player.isDown()) {
 					   player.up();
+					}
 					break;
 			
 
 				}
 
 			}
+			
+			
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				switch (e.getKeyCode()) {
+				case KeyEvent.VK_LEFT:
+				 player.setLeft(false);
+                   
+					break;
+				case KeyEvent.VK_RIGHT:
+				player.setRight(false);
+					 
+					break;
+				
+			
+
+				}
+				
+				
+			}
+			
+			
 		});
 
 	}
