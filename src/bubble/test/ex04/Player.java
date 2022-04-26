@@ -25,7 +25,12 @@ public class Player extends JLabel implements Moveable {
 	public Player() {
 		initObject();
 		initSetting();
+		initBackgroundPlayerService();
 
+	}
+
+	private void initBackgroundPlayerService() {
+		new Thread(new BackgroundPlayerService(this)).start();
 	}
 
 	private void initSetting() {
