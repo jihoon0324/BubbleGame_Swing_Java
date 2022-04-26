@@ -42,12 +42,17 @@ public class Player extends JLabel implements Moveable {
 
 	@Override
 	public void left() {
+		setIcon(playerL);
+		x= x-10;
+		setLocation(x, y);
 
 	}
 
 	@Override
 	public void right() {
-		
+		setIcon(playerR);
+		x= x+10;
+		setLocation(x, y);
 
 	}
 
