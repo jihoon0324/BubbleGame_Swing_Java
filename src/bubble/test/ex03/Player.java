@@ -28,6 +28,7 @@ public class Player extends JLabel implements Moveable {
 		right= false;
 		up =false;
 		down= false;
+		
 		setIcon(playerR);
 		setSize(50, 50);
 		setLocation(x, y);
