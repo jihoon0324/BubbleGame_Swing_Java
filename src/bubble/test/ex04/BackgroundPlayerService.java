@@ -14,7 +14,7 @@ public class BackgroundPlayerService implements Runnable{
 	public BackgroundPlayerService(Player player) {
 		this.player = player;
 		try {
-			image=ImageIO.read(new File("image/test.png"));
+			image=ImageIO.read(new File("image/backgroundMapService.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -25,7 +25,12 @@ public class BackgroundPlayerService implements Runnable{
 	public void run() {
 		while(true) {
 		Color color= new Color(image.getRGB(player.getX(), player.getY()));
+		if(color.getRed() ==255 && color.getGreen() ==0&color.getBlue()==0) {
+		System.out.println("충돌");
 		System.out.println(color);
+	
+		}
+		
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
