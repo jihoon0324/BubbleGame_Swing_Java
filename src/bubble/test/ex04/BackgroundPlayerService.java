@@ -7,39 +7,42 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class BackgroundPlayerService implements Runnable{
+public class BackgroundPlayerService implements Runnable {
 	private BufferedImage image;
 	private Player player;
-	
+
 	public BackgroundPlayerService(Player player) {
 		this.player = player;
 		try {
-			image=ImageIO.read(new File("image/backgroundMapService.png"));
+			image = ImageIO.read(new File("image/backgroundMapService.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void run() {
-		while(true) {
-		Color color= new Color(image.getRGB(player.getX(), player.getY()));
-		if(color.getRed() ==255 && color.getGreen() ==0&color.getBlue()==0) {
-		System.out.println("충돌");
-		System.out.println(color);
-	
-		}
-		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		while (true) {
+			Color leftcolor = new Color(image.getRGB(player.getX(), player.getY()+25));
+			Color rightcolor = new Color(image.getRGB(player.getX()+50+15, player.getY()+25));
+			if (leftcolor.getRed() == 255 && leftcolor.getGreen() == 0 & leftcolor.getBlue() == 0) {
+				System.out.println("충돌");
+				player.setLeft(false);
+
+			} else if (rightcolor.getRed() == 255 && rightcolor.getGreen() == 0 & rightcolor.getBlue() == 0) {
+				System.out.println("오른쪽충돌");
+
+				player.setRight(false);
+			}
+
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
-	
-	
 
 }
