@@ -109,49 +109,43 @@ public class Player extends JLabel implements Moveable {
 	// left+up , right +up
 	@Override
 	public void up() {
-		up = true;
-      new Thread(()->{
-    	  for(int i=0 ; i<130 /JUMSPEED;i++) {
-    		  y=y-JUMSPEED;
-    		  setLocation(x, y);
-    		  try {
-				Thread.sleep(5);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}  
-    	  }
-    	  
-    	  up=false;
-    	  down();
-    	  
-    	  
-    	  
-      }).start();
+		if (up == false && down == false) {
+			up = true;
+			new Thread(() -> {
 
+				for (int i = 0; i < 130 /JUMSPEED; i++) {
+					y = y - (JUMSPEED);
+					setLocation(x, y);
+					try {
+						Thread.sleep(5);
+					} catch (Exception e) {
+						System.out.println("위쪽 이동중 인터럽트 발생 : " + e.getMessage());
+					}
+				}
+				
+				up = false;
+				down();
+			}).start();
+		}
 	}
 
 	@Override
 	public void down() {
-
-		down = true;
-		new Thread(() -> {
-			for (int i = 0; i < 130 / JUMSPEED; i++) {
-				y = y + JUMSPEED;
-				setLocation(x, y);
-				try {
-					Thread.sleep(3);
-				} catch (InterruptedException e) {
-
-					e.printStackTrace();
+		if (down == false) {
+			down = true;
+			new Thread(() -> {
+				while (down) {
+					System.out.println("하강 시작");
+					y = y + (JUMSPEED);
+					setLocation(x, y);
+					try {
+						Thread.sleep(3);
+					} catch (Exception e) {
+						System.out.println("아래쪽 이동중 인터럽트 발생 : " + e.getMessage());
+					}
 				}
-			}
-			
-			down = false;
-			
-
-		}).start();
-
+				down = false;
+			}).start();
+		}
 	}
-
 }
