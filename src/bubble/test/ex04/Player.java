@@ -18,9 +18,13 @@ public class Player extends JLabel implements Moveable {
 	private boolean up;
 	private boolean down;
 
-	private final int SPEED = 3;
+	private final int SPEED = 5;
 	private final int JUMSPEED = 2;
 	private ImageIcon playerR, playerL;
+	
+	//벽 충돌 상태 변수
+	private boolean leftWallCrach;
+	private boolean rightWallCrash;
 
 	public Player() {
 		initObject();
@@ -40,6 +44,8 @@ public class Player extends JLabel implements Moveable {
 		right = false;
 		up = false;
 		down = false;
+		leftWallCrach= false;
+		rightWallCrash=false;
 
 		setIcon(playerR);
 		setSize(50, 50);

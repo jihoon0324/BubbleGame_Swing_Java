@@ -25,13 +25,13 @@ public class BubbleFrame extends JFrame {
 				//System.out.println(e.getKeyCode());
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_LEFT:
-				if(!player.isLeft()){
+				if(!player.isLeft() && !player.isLeftWallCrach()){
 					 player.left();
 				}
                    
 					break;
 				case KeyEvent.VK_RIGHT:
-					if(!player.isRight()) {
+					if(!player.isRight() && !player.isRightWallCrash()) {
 						  player.right();
 					}
 					 

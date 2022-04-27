@@ -29,11 +29,16 @@ public class BackgroundPlayerService implements Runnable {
 			if (leftcolor.getRed() == 255 && leftcolor.getGreen() == 0 & leftcolor.getBlue() == 0) {
 				System.out.println("충돌");
 				player.setLeft(false);
+				player.setLeftWallCrach(true);
 
 			} else if (rightcolor.getRed() == 255 && rightcolor.getGreen() == 0 & rightcolor.getBlue() == 0) {
 				System.out.println("오른쪽충돌");
 
 				player.setRight(false);
+				player.setRightWallCrash(true);
+			}else {
+				player.setLeftWallCrach(false);
+				player.setRightWallCrash(false);
 			}
 
 			try {
