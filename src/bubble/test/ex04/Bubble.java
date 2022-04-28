@@ -115,6 +115,9 @@ public class Bubble extends JLabel implements Moveable {
 		while(up) {
 			 y --;
 			 setLocation(x,y);
+			 if(backgroundBubbleService.topWall()) {
+				 break;
+			 }
 			 try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
