@@ -12,12 +12,15 @@ public class Player extends JLabel implements Moveable {
 
 	private int x;
 	private int y;
-
+	
+	//플레이어 방향
+    private PlayerDirection playerDirection;
+	//플레이어 위치 
 	private boolean left;
 	private boolean right;
 	private boolean up;
 	private boolean down;
-
+  // 플레이서 속도 
 	private final int SPEED = 5;
 	private final int JUMSPEED = 2;
 	private ImageIcon playerR, playerL;
@@ -46,7 +49,7 @@ public class Player extends JLabel implements Moveable {
 		down = false;
 		leftWallCrach= false;
 		rightWallCrash=false;
-
+		playerDirection = PlayerDirection.RIGHT;
 		setIcon(playerR);
 		setSize(50, 50);
 		setLocation(x, y);
@@ -60,6 +63,7 @@ public class Player extends JLabel implements Moveable {
 
 	@Override
 	public void left() {
+		playerDirection = PlayerDirection.LEFT;
 		left = true;
 		new Thread(() -> {
 			while (left) {
@@ -88,6 +92,7 @@ public class Player extends JLabel implements Moveable {
 
 //		}
 //	}).start();
+		playerDirection = PlayerDirection.RIGHT;
 		right = true;
 		new Thread(() -> {
 			while (right) {
