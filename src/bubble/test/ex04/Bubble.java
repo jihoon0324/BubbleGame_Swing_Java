@@ -93,6 +93,7 @@ public class Bubble extends JLabel implements Moveable {
 				e.printStackTrace();
 			}
 			
+			 
 		 }
 		up();
 	}
