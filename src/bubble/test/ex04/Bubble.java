@@ -13,6 +13,7 @@ public class Bubble extends JLabel implements Moveable {
 	private int y;
 
 	private Player player;
+	private BackgroundBubbleService backgroundBubbleService;
 
 	private boolean left;
 	private boolean right;
@@ -47,6 +48,8 @@ public class Bubble extends JLabel implements Moveable {
 		bubble = new ImageIcon("Image/bubble.png");
 		bubbled = new ImageIcon("Image/bubbled.png");
 		bomb = new ImageIcon("Image/bomb.png");
+		
+		backgroundBubbleService = new BackgroundBubbleService(this);
 
 	}
 
@@ -69,6 +72,9 @@ public class Bubble extends JLabel implements Moveable {
 	 for(int i=0; i<400 ;i++) {
 		 x --;
 		 setLocation(x,y);
+		 if(backgroundBubbleService.leftWall()) {
+			 break;
+		 }
 		 try {
 			Thread.sleep(1);
 		} catch (InterruptedException e) {
@@ -86,6 +92,9 @@ public class Bubble extends JLabel implements Moveable {
 		for(int i=0; i<400 ;i++) {
 			 x ++;
 			 setLocation(x,y);
+			 if(backgroundBubbleService.rightWall()) {
+				 break;
+			 }
 			 try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
