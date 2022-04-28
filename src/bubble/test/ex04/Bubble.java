@@ -11,7 +11,8 @@ import lombok.Setter;
 public class Bubble extends JLabel implements Moveable {
 	private int x;
 	private int y;
-
+//의존성 콤포지션
+	private BubbleFrame myContext;
 	private Player player;
 	private BackgroundBubbleService backgroundBubbleService;
 
@@ -25,8 +26,9 @@ public class Bubble extends JLabel implements Moveable {
 	private ImageIcon bubbled; // 적을 가둔 물방울
 	private ImageIcon bomb; // 물방울이 터진 상태
 
-	public Bubble(Player player) {
-		this.player = player;
+	public Bubble(BubbleFrame myContext) {
+		this.myContext = myContext;
+		this.player = myContext.getPlayer();
 		initObject();
 		initSetting();
 		initThread();
@@ -138,6 +140,9 @@ public class Bubble extends JLabel implements Moveable {
 			Thread.sleep(3000);
 			setIcon(bomb);
 			Thread.sleep(5000);
+			myContext.remove(this);
+			myContext.repaint(); // 메모리에서 없는건 그리지 않는다
+			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
