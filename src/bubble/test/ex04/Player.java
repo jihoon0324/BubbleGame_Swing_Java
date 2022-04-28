@@ -9,6 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Player extends JLabel implements Moveable {
+	
+	private BubbleFrame myContext;
 
 	private int x;
 	private int y;
@@ -29,7 +31,8 @@ public class Player extends JLabel implements Moveable {
 	private boolean leftWallCrach;
 	private boolean rightWallCrash;
 
-	public Player() {
+	public Player(BubbleFrame myContext) {
+		this.myContext= myContext;
 		initObject();
 		initSetting();
 		initBackgroundPlayerService();
@@ -60,6 +63,16 @@ public class Player extends JLabel implements Moveable {
 		playerL = new ImageIcon("image/PlayerL.png");
 
 	}
+	
+
+		Bubble bubble = new Bubble(myContext);
+	
+	@Override
+	public void attack() {
+		Bubble bubble = new Bubble(myContext);
+	}
+	
+	
 
 	@Override
 	public void left() {

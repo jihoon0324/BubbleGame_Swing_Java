@@ -47,8 +47,8 @@ public class BubbleFrame extends JFrame {
 					}
 					break;
 				case KeyEvent.VK_SPACE:
-				Bubble bubble = new Bubble(myContext);
-				add(bubble);
+		//		Bubble bubble = new Bubble(myContext);
+		//		add(bubble);
 					
 					break;
 			
