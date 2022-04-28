@@ -28,6 +28,19 @@ public class Bubble extends JLabel implements Moveable {
 		this.player = player;
 		initObject();
 		initSetting();
+		initThread();
+	}
+//버들은 하나만 필요하다
+	private void initThread() {
+	 new Thread(()->{
+		 if(player.getPlayerDirection() == PlayerDirection.LEFT) {
+			 left();
+		 } else {
+			 right();
+		 }
+		 
+	 }).start();
+		
 	}
 
 	private void initObject() {
@@ -52,19 +65,54 @@ public class Bubble extends JLabel implements Moveable {
 
 	@Override
 	public void left() {
-	
+		left=true;
+	 for(int i=0; i<400 ;i++) {
+		 x --;
+		 setLocation(x,y);
+		 try {
+			Thread.sleep(1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+	 }
+		up();
 	}
 
 	@Override
 	public void right() {
-
-		
+		right =true;
+		for(int i=0; i<400 ;i++) {
+			 x ++;
+			 setLocation(x,y);
+			 try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		 }
+		up();
 	}
+		
+	
 
 	@Override
 	public void up() {
+		up=true;
+		while(up) {
+			 y --;
+			 setLocation(x,y);
+			 try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
+		 }
 		
 	}
 
