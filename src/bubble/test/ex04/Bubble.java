@@ -73,6 +73,7 @@ public class Bubble extends JLabel implements Moveable {
 		 x --;
 		 setLocation(x,y);
 		 if(backgroundBubbleService.leftWall()) {
+			 left= false;
 			 break;
 		 }
 		 try {
@@ -93,6 +94,7 @@ public class Bubble extends JLabel implements Moveable {
 			 x ++;
 			 setLocation(x,y);
 			 if(backgroundBubbleService.rightWall()) {
+				 right= false;
 				 break;
 			 }
 			 try {
@@ -116,16 +118,30 @@ public class Bubble extends JLabel implements Moveable {
 			 y --;
 			 setLocation(x,y);
 			 if(backgroundBubbleService.topWall()) {
+				 up =false;
 				 break;
 			 }
 			 try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		
 		 }
+		clearBubble();
+		
+		
+	}
+	private void clearBubble() {
+		try {
+			Thread.sleep(3000);
+			setIcon(bomb);
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
