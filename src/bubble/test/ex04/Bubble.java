@@ -31,26 +31,23 @@ public class Bubble extends JLabel implements Moveable {
 		this.player = myContext.getPlayer();
 		initObject();
 		initSetting();
-		initThread();
-	}
-//버들은 하나만 필요하다
-	private void initThread() {
-	 new Thread(()->{
-		 if(player.getPlayerDirection() == PlayerDirection.LEFT) {
-			 left();
-		 } else {
-			 right();
-		 }
-		 
-	 }).start();
-		
+		// initThread();
 	}
 
+	/**
+	 * //버블은 하나만 필요하다 private void initThread() { new Thread(()->{
+	 * if(player.getPlayerDirection() == PlayerDirection.LEFT) { left(); } else {
+	 * right(); }
+	 * 
+	 * }).start();
+	 * 
+	 * }
+	 **/
 	private void initObject() {
 		bubble = new ImageIcon("Image/bubble.png");
 		bubbled = new ImageIcon("Image/bubbled.png");
 		bomb = new ImageIcon("Image/bomb.png");
-		
+
 		backgroundBubbleService = new BackgroundBubbleService(this);
 
 	}
@@ -61,80 +58,77 @@ public class Bubble extends JLabel implements Moveable {
 		up = false;
 		x = player.getX();
 		y = player.getY();
-		
+
 		setIcon(bubble);
-		setSize(50,50);
-		state =0;
+		setSize(50, 50);
+		state = 0;
 
 	}
 
 	@Override
 	public void left() {
-		left=true;
-	 for(int i=0; i<400 ;i++) {
-		 x --;
-		 setLocation(x,y);
-		 if(backgroundBubbleService.leftWall()) {
-			 left= false;
-			 break;
-		 }
-		 try {
-			Thread.sleep(1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	 }
-		up();
-	}
-
-	@Override
-	public void right() {
-		right =true;
-		for(int i=0; i<400 ;i++) {
-			 x ++;
-			 setLocation(x,y);
-			 if(backgroundBubbleService.rightWall()) {
-				 right= false;
-				 break;
-			 }
-			 try {
+		left = true;
+		for (int i = 0; i < 400; i++) {
+			x--;
+			setLocation(x, y);
+			if (backgroundBubbleService.leftWall()) {
+				left = false;
+				break;
+			}
+			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			 
-		 }
+
+		}
 		up();
 	}
-		
-	
+
+	@Override
+	public void right() {
+		right = true;
+		for (int i = 0; i < 400; i++) {
+			x++;
+			setLocation(x, y);
+			if (backgroundBubbleService.rightWall()) {
+				right = false;
+				break;
+			}
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		up();
+	}
 
 	@Override
 	public void up() {
-		up=true;
-		while(up) {
-			 y --;
-			 setLocation(x,y);
-			 if(backgroundBubbleService.topWall()) {
-				 up =false;
-				 break;
-			 }
-			 try {
+		up = true;
+		while (up) {
+			y--;
+			setLocation(x, y);
+			if (backgroundBubbleService.topWall()) {
+				up = false;
+				break;
+			}
+			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
-				
+
 				e.printStackTrace();
 			}
-		
-		 }
+
+		}
 		clearBubble();
-		
-		
+
 	}
+
 	private void clearBubble() {
 		try {
 			Thread.sleep(3000);
@@ -142,12 +136,12 @@ public class Bubble extends JLabel implements Moveable {
 			Thread.sleep(5000);
 			myContext.remove(this);
 			myContext.repaint(); // 메모리에서 없는건 그리지 않는다
-			
+
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

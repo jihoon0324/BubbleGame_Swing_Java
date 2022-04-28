@@ -65,16 +65,22 @@ public class Player extends JLabel implements Moveable {
 	}
 	
 
-		Bubble bubble = new Bubble(myContext);
+	
 	
 	@Override
 	public void attack() {
+		new Thread(()->{
 		Bubble bubble = new Bubble(myContext);
+		myContext.add(bubble);
 		if(playerDirection == playerDirection.LEFT) {
 			bubble.left();
 		}else {
 			bubble.right();
-		}
+		}	
+
+		}).start();
+		
+		
 	}
 	
 	
