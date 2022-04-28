@@ -49,7 +49,7 @@ public class BubbleFrame extends JFrame {
 				case KeyEvent.VK_SPACE:
 		//		Bubble bubble = new Bubble(myContext);
 		//		add(bubble);
-					
+					player.attack();
 					break;
 			
 
@@ -87,7 +87,7 @@ public class BubbleFrame extends JFrame {
 		backgroundMap = new JLabel(new ImageIcon("image/backgroundMap.png"));
 
 		setContentPane(backgroundMap);
-		player = new Player();
+		player = new Player(myContext);
 		add(player);
 
 	}

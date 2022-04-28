@@ -70,6 +70,11 @@ public class Player extends JLabel implements Moveable {
 	@Override
 	public void attack() {
 		Bubble bubble = new Bubble(myContext);
+		if(playerDirection == playerDirection.LEFT) {
+			bubble.left();
+		}else {
+			bubble.right();
+		}
 	}
 	
 	
