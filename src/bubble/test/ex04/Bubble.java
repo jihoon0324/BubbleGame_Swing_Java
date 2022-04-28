@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Bubble extends JLabel {
+public class Bubble extends JLabel implements Moveable {
 	private int x;
 	private int y;
 
@@ -48,6 +48,24 @@ public class Bubble extends JLabel {
 		setSize(50,50);
 		state =0;
 
+	}
+
+	@Override
+	public void left() {
+	
+		
+	}
+
+	@Override
+	public void right() {
+
+		
+	}
+
+	@Override
+	public void up() {
+		
+		
 	}
 
 }
