@@ -22,7 +22,10 @@ public class Enemy extends JLabel implements Moveable {
 	private boolean right;
 	private boolean up;
 	private boolean down;
-  // 적군 속도 
+	
+	
+	private int state ; // 0(살아있는상태) 1 ( 갇혀있는 상태)
+	// 적군 속도 
 	private final int SPEED = 3;
 	private final int JUMSPEED = 1;
 	private ImageIcon enemyR, enemyL;
@@ -48,7 +51,7 @@ public class Enemy extends JLabel implements Moveable {
 		right = false;
 		up = false;
 		down = false;
-		
+		state= 0;
 	
 		enemyDirection = EnemyDirection.LEFT;
 		setIcon(enemyL);
