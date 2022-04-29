@@ -15,6 +15,7 @@ public class BubbleFrame extends JFrame {
 	private BubbleFrame myContext= this;
 	private JLabel backgroundMap;
 	private Player player;
+	private Enemy enemy;
 
 	public BubbleFrame() {
 		initObject();
@@ -89,7 +90,8 @@ public class BubbleFrame extends JFrame {
 		setContentPane(backgroundMap);
 		player = new Player(myContext);
 		add(player);
-
+		enemy = new Enemy(myContext);
+        add(enemy);
 	}
 
 	private void initSetting() {
