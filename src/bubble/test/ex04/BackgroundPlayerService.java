@@ -13,10 +13,10 @@ public class BackgroundPlayerService implements Runnable {
 	private Player player;
 	private  List<Bubble> bubbleList;
 
-	public BackgroundPlayerService(BubbleFrame myContext) {
+	public BackgroundPlayerService(Player player) {
 		
-		this.player = myContext.getPlayer();
-		this.bubbleList =myContext.getPlayer().getBubbleList();
+		this.player = player;
+		this.bubbleList =player.getBubbleList();
 		try {
 			image = ImageIO.read(new File("image/backgroundMapService.png"));
 		} catch (IOException e) {
@@ -30,11 +30,14 @@ public class BackgroundPlayerService implements Runnable {
 		while (true) {
 			//버블 충돌 체크
 			for(int i=0; i<bubbleList.size(); i++) {
-				
+				Bubble bubble= bubbleList.get(i);
 				if(bubbleList.get(i).getState() == 1) {
-					if((Math.abs(player.getX() -bubbleList.get(i).getX()) <10 ) &&
-							(Math.abs(player.getY() -bubbleList.get(i).getY()) >0 &&  Math.abs(player.getY() -bubbleList.get(i).getY()) <50 )) {
-						System.out.println("버불 깨짐");
+					if((Math.abs(player.getX() -bubble.getX()) <10 ) &&
+							(Math.abs(player.getY() -bubble.getY()) >0 &&  Math.abs(player.getY() -bubble.getY()) <50 )) {
+						System.out.println("적군 사살 완료");
+					
+						bubble.clearBubbled();
+						break;
 						
 					}
 				}
