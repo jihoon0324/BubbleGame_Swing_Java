@@ -1,5 +1,9 @@
 package bubble.test.ex04;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -11,7 +15,7 @@ import lombok.Setter;
 public class Player extends JLabel implements Moveable {
 	
 	private BubbleFrame myContext;
-
+	private List<Bubble> bubbleList;
 	private int x;
 	private int y;
 	
@@ -40,7 +44,7 @@ public class Player extends JLabel implements Moveable {
 	}
 
 	private void initBackgroundPlayerService() {
-		new Thread(new BackgroundPlayerService(this)).start();
+		new Thread(new BackgroundPlayerService(myContext)).start();
 	}
 
 	private void initSetting() {
@@ -61,6 +65,7 @@ public class Player extends JLabel implements Moveable {
 	private void initObject() {
 		playerR = new ImageIcon("image/PlayerR.png");
 		playerL = new ImageIcon("image/PlayerL.png");
+		bubbleList= new ArrayList<>();
 
 	}
 	
@@ -72,6 +77,7 @@ public class Player extends JLabel implements Moveable {
 		new Thread(()->{
 		Bubble bubble = new Bubble(myContext);
 		myContext.add(bubble);
+		bubbleList.add(bubble);
 		if(playerDirection == playerDirection.LEFT) {
 			bubble.left();
 		}else {
