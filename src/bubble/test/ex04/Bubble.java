@@ -14,6 +14,7 @@ public class Bubble extends JLabel implements Moveable {
 //의존성 콤포지션
 	private BubbleFrame myContext;
 	private Player player;
+	private Enemy enemy;
 	private BackgroundBubbleService backgroundBubbleService;
 
 	private boolean left;
@@ -28,6 +29,7 @@ public class Bubble extends JLabel implements Moveable {
 
 	public Bubble(BubbleFrame myContext) {
 		this.myContext = myContext;
+		this.enemy = myContext.getEnemy();
 		this.player = myContext.getPlayer();
 		initObject();
 		initSetting();
@@ -75,6 +77,13 @@ public class Bubble extends JLabel implements Moveable {
 				left = false;
 				break;
 			}
+			if((Math.abs(x -enemy.getX()) >40 &&  Math.abs(x -enemy.getX()) < 60) &&
+					(Math.abs(y -enemy.getY()) >0 &&  Math.abs(y -enemy.getY()) <50 )) {
+			System.out.print("충돌 적군");
+			attack();
+			
+			}
+			
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
@@ -127,6 +136,12 @@ public class Bubble extends JLabel implements Moveable {
 		}
 		clearBubble();
 
+	}
+	
+	@Override
+	public void attack() {
+	state =1 ;
+	setIcon(bubbled);
 	}
 
 	private void clearBubble() {
